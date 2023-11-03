@@ -6,9 +6,6 @@ from huggingface_hub import snapshot_download
 
 class InferlessPythonModel:
     def initialize(self):
-        self.template = """SYSTEM: You are a helpful assistant.
-        USER: {}
-        ASSISTANT: """
         snapshot_download(
             "codellama/CodeLlama-34b-Python-hf",
             local_dir="/model",
@@ -17,8 +14,8 @@ class InferlessPythonModel:
         self.llm = LLM("/model")
     
     def infer(self, inputs):
-        print("inputs[questions] -->", inputs["questions"], flush=True)
-        prompts = [self.template.format(inputs["questions"])]
+        print("inputs[prompt] -->", inputs["prompt"], flush=True)
+        prompts = [inputs["prompt"]]
         print("Prompts -->", prompts, flush=True)
         sampling_params = SamplingParams(
             temperature=0.1,
