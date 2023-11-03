@@ -18,9 +18,9 @@ class InferlessPythonModel:
         prompts = [inputs["prompt"]]
         print("Prompts -->", prompts, flush=True)
         sampling_params = SamplingParams(
-            temperature=0.1,
-            top_p=1,
-            max_tokens=800,
+            temperature=0.7,
+            top_p=10,
+            max_tokens=256,
             presence_penalty=1.15,
         )
         result = self.llm.generate(prompts, sampling_params)
